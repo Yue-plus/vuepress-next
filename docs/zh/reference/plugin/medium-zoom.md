@@ -1,6 +1,6 @@
 # medium-zoom
 
-> @vuepress/plugin-medium-zoom
+> [@vuepress/plugin-medium-zoom](https://www.npmjs.com/package/@vuepress/plugin-medium-zoom)
 
 将 [medium-zoom](https://github.com/francoischalifour/medium-zoom#readme) 集成到 VuePress 中，为图片提供可缩放的功能。
 
@@ -68,7 +68,7 @@
 
 ```ts
 import { nextTick } from 'vue'
-import { useMediumZoom } from '@vuepress/plugin-medium-zoom/lib/composables'
+import { useMediumZoom } from '@vuepress/plugin-medium-zoom/lib/client'
 
 export default {
   setup() {
