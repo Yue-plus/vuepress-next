@@ -8,6 +8,7 @@ import { resolvePageExcerpt } from './resolvePageExcerpt'
 import { resolvePageFileContent } from './resolvePageFileContent'
 import { resolvePageFilePath } from './resolvePageFilePath'
 import { resolvePageFrontmatter } from './resolvePageFrontmatter'
+import { resolvePageHtmlInfo } from './resolvePageHtmlInfo'
 import { resolvePageKey } from './resolvePageKey'
 import { resolvePageLang } from './resolvePageLang'
 import { resolvePagePath } from './resolvePagePath'
@@ -38,7 +39,12 @@ export const createPage = async (
   const frontmatter = resolvePageFrontmatter({ frontmatterRaw, options })
 
   // resolve excerpt from raw excerpt
-  const excerpt = resolvePageExcerpt({ excerptRaw, app, filePathRelative })
+  const excerpt = resolvePageExcerpt({
+    app,
+    excerptRaw,
+    filePathRelative,
+    frontmatter,
+  })
 
   // resolve slug from file path
   const slug = resolvePageSlug({ filePathRelative })
@@ -67,6 +73,12 @@ export const createPage = async (
   // resolve path key
   const key = resolvePageKey({ path })
 
+  // resolve page rendered html file path
+  const { htmlFilePath, htmlFilePathRelative } = resolvePageHtmlInfo({
+    app,
+    path,
+  })
+
   // resolve page component and extract headers & links
   const {
     headers,
@@ -79,7 +91,8 @@ export const createPage = async (
     app,
     content,
     filePathRelative,
-    path,
+    frontmatter,
+    htmlFilePathRelative,
     key,
   })
 
@@ -113,6 +126,8 @@ export const createPage = async (
     dataFileChunkName,
     routesFilePath,
     routesFilePathRelative,
+    htmlFilePath,
+    htmlFilePathRelative,
     title,
     content,
     frontmatter,

@@ -1,8 +1,10 @@
 import * as chokidar from 'chokidar'
 import { defineUserConfig } from '@vuepress/cli'
 import type { DefaultThemeOptions } from '@vuepress/theme-default'
-import { chalk, logger } from '@vuepress/utils'
+import { chalk, logger, path } from '@vuepress/utils'
 import { navbar, sidebar } from './configs'
+
+const isProd = process.env.NODE_ENV === 'production'
 
 export default defineUserConfig<DefaultThemeOptions>({
   base: '/',
@@ -63,10 +65,8 @@ export default defineUserConfig<DefaultThemeOptions>({
     },
   },
 
-  bundler:
-    process.env.NODE_ENV === 'production'
-      ? '@vuepress/webpack'
-      : '@vuepress/vite',
+  // use vite in dev, use webpack in prod
+  bundler: isProd ? '@vuepress/webpack' : '@vuepress/vite',
 
   themeConfig: {
     logo: '/images/hero.png',
@@ -133,7 +133,7 @@ export default defineUserConfig<DefaultThemeOptions>({
 
     themePlugins: {
       // only enable git plugin in production mode
-      git: process.env.NODE_ENV === 'production',
+      git: isProd,
     },
   },
 
@@ -172,9 +172,22 @@ export default defineUserConfig<DefaultThemeOptions>({
         },
       },
     ],
+    [
+      '@vuepress/plugin-register-components',
+      {
+        componentsDir: path.resolve(__dirname, './components'),
+      },
+    ],
+    // only enable shiki plugin in production mode
+    [
+      '@vuepress/plugin-shiki',
+      isProd
+        ? {
+            theme: 'dark-plus',
+          }
+        : false,
+    ],
   ],
-
-  evergreen: process.env.NODE_ENV !== 'production',
 
   onWatched: (_, watchers, restart) => {
     const watcher = chokidar.watch('configs/**/*.ts', {

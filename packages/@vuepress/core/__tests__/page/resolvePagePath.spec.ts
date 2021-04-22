@@ -14,7 +14,31 @@ const testCases: [
         },
       },
     ],
-    '/permalink',
+    '/permalink/',
+  ],
+  [
+    [
+      {
+        permalink: '/permalink/',
+        pathInferred: '/inferred/',
+        options: {
+          path: '/options/',
+        },
+      },
+    ],
+    '/permalink/',
+  ],
+  [
+    [
+      {
+        permalink: '/permalink.html',
+        pathInferred: '/inferred.html',
+        options: {
+          path: '/options.html',
+        },
+      },
+    ],
+    '/permalink.html',
   ],
   [
     [
@@ -26,7 +50,19 @@ const testCases: [
         },
       },
     ],
-    '/inferred',
+    '/inferred/',
+  ],
+  [
+    [
+      {
+        permalink: null,
+        pathInferred: '/inferred/',
+        options: {
+          path: '/options/',
+        },
+      },
+    ],
+    '/inferred/',
   ],
   [
     [
@@ -38,17 +74,31 @@ const testCases: [
         },
       },
     ],
-    '/options',
+    '/options/',
   ],
   [
     [
       {
         permalink: null,
         pathInferred: null,
-        options: {},
+        options: {
+          path: '/options/',
+        },
       },
     ],
-    '',
+    '/options/',
+  ],
+  [
+    [
+      {
+        permalink: null,
+        pathInferred: null,
+        options: {
+          path: '/options.html',
+        },
+      },
+    ],
+    '/options.html',
   ],
 ]
 
@@ -59,5 +109,21 @@ describe('core > page > resolvePagePath', () => {
         expect(resolvePagePath(...input)).toEqual(expected)
       })
     })
+  })
+
+  it('should throw an error', async () => {
+    const consoleError = console.error
+    console.error = jest.fn()
+
+    expect(() =>
+      resolvePagePath({
+        permalink: null,
+        pathInferred: null,
+        options: {},
+      })
+    ).toThrow()
+    expect(console.error).toHaveBeenCalled()
+
+    console.error = consoleError
   })
 })

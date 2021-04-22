@@ -1,6 +1,12 @@
 module.exports = {
   root: true,
   extends: 'vuepress',
+  globals: {
+    __DEV__: 'readonly',
+    __SSR__: 'readonly',
+    __VERSION__: 'readonly',
+    __VUE_HMR_RUNTIME__: 'readonly',
+  },
   overrides: [
     {
       files: ['*.ts', '*.vue'],
@@ -16,12 +22,19 @@ module.exports = {
       },
     },
     {
+      files: ['clientAppEnhance.ts'],
+      rules: {
+        'vue/match-component-file-name': 'off',
+      },
+    },
+    {
       files: ['**/__tests__/**/*.ts'],
       env: {
         jest: true,
       },
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
+        'vue/one-component-per-file': 'off',
       },
     },
   ],
