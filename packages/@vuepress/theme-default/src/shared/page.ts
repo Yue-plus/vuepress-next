@@ -8,6 +8,7 @@ export interface DefaultThemePageData extends GitPluginPageData {
 export interface DefaultThemePageFrontmatter {
   home?: boolean
   navbar?: boolean
+  pageClass?: string
 }
 
 export interface DefaultThemeHomePageFrontmatter
@@ -37,6 +38,7 @@ export interface DefaultThemeNormalPageFrontmatter
   lastUpdated?: boolean
   contributors?: boolean
   sidebar?: 'auto' | false | SidebarConfig
+  sidebarDepth?: number
   prev?: string | NavLink
   next?: string | NavLink
 }

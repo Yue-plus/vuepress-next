@@ -20,14 +20,24 @@ export const zh: SidebarConfig = {
         '/zh/guide/migration.md',
       ],
     },
+  ],
+  '/zh/advanced/': [
     {
       isGroup: true,
       text: '深入',
       children: [
-        '/zh/guide/advanced/architecture.md',
-        '/zh/guide/advanced/plugin.md',
-        '/zh/guide/advanced/theme.md',
-        '/zh/guide/advanced/markdown.md',
+        '/zh/advanced/architecture.md',
+        '/zh/advanced/plugin.md',
+        '/zh/advanced/theme.md',
+      ],
+    },
+    {
+      isGroup: true,
+      text: 'Cookbook',
+      children: [
+        '/zh/advanced/cookbook/README.md',
+        '/zh/advanced/cookbook/usage-of-client-app-enhance.md',
+        '/zh/advanced/cookbook/markdown-and-vue-sfc.md',
       ],
     },
   ],
@@ -86,6 +96,7 @@ export const zh: SidebarConfig = {
             '/zh/reference/plugin/medium-zoom.md',
             '/zh/reference/plugin/nprogress.md',
             '/zh/reference/plugin/register-components.md',
+            '/zh/reference/plugin/search.md',
           ],
         },
         {

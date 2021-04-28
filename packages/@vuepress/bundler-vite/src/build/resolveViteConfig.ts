@@ -15,21 +15,9 @@ export const resolveViteConfig = ({
   mergeConfig(
     {
       configFile: false,
-      logLevel: app.env.isDebug ? 'info' : 'warn',
-      build: {
-        ssr: isServer,
-        outDir: isServer ? app.dir.dest('.server') : app.dir.dest(),
-        cssCodeSplit: false,
-        polyfillDynamicImport: false,
-        rollupOptions: {
-          input: isServer
-            ? app.dir.client('lib/server.js')
-            : app.dir.client('lib/client.js'),
-          preserveEntrySignatures: 'allow-extension',
-        },
-        minify: isServer ? false : !app.env.isDebug,
-      },
       plugins: [createPlugin({ app, options, isServer, isBuild: true })],
+      // `logLevel` won't take effect in `config` hook of plugin API
+      logLevel: app.env.isDebug ? 'info' : 'warn',
     },
     options.viteOptions ?? {}
   )

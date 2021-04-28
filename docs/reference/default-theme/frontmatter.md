@@ -1,5 +1,7 @@
 # Frontmatter
 
+<NpmBadge package="@vuepress/theme-default" />
+
 ## All Pages
 
 Frontmatter in this section will take effect in all types of pages.
@@ -16,6 +18,33 @@ Frontmatter in this section will take effect in all types of pages.
 
 - Also see:
   - [Default Theme > Config > navbar](./config.md#navbar)
+
+### pageClass
+
+- Type: `string`
+
+- Details:
+
+  Add extra class name to this page.
+
+- Example:
+
+```md
+---
+pageClass: custom-page-class
+---
+```
+
+Then you can customize styles of this page in `.vuepress/styles/index.scss` file:
+
+```scss
+.theme-container.custom-page-class {
+  /* page styles */
+}
+```
+
+- Also see:
+  - [Default Theme > Styles > Style File](./styles.md#style-file)
 
 ## Home Page
 
@@ -218,6 +247,17 @@ Frontmatter in this section will only take effect in normal pages.
 
 - Also see:
   - [Default Theme > Config > sidebar](./config.md#sidebar)
+
+### sidebarDepth
+
+- Type: `number`
+
+- Details:
+
+  Configure the sidebar depth of this page.
+
+- Also see:
+  - [Default Theme > Config > sidebarDepth](./config.md#sidebardepth)
 
 ### prev
 

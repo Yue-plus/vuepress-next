@@ -1,5 +1,7 @@
 # Plugin API
 
+<NpmBadge package="@vuepress/core" />
+
 Plugins should be used before initialization. The basic options will be handled once the plugin is used:
 
 - [name](#name)
@@ -149,7 +151,7 @@ module.exports = {
 
 ### extendsMarkdown
 
-- Type: `(md: Markdown, app: App) => void`
+- Type: `(md: Markdown, app: App) => void | Promise<void>`
 
 - Details:
 
@@ -257,6 +259,7 @@ module.exports = {
 
 - Also see:
   - [Client API > defineClientAppEnhance](./client-api.md#defineclientappenhance)
+  - [Cookbook > Usage of Client App Enhance](../advanced/cookbook/usage-of-client-app-enhance.md)
 
 ### clientAppRootComponentFiles
 

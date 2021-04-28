@@ -1,5 +1,8 @@
 # 配置
 
+<NpmBadge package="@vuepress/cli" />
+<NpmBadge package="@vuepress/core" />
+
 VuePress 配置的参考文档，可以通过配置文件来设置这些配置。 VuePress 约定的配置文件为（按照优先顺序）：
 
 - 当前工作目录 `cwd` 下：
@@ -274,7 +277,7 @@ module.exports = {
   - [markdown-it > Init with presets and options](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
   - [指南 > Markdown > 语法扩展](../guide/markdown.md#语法扩展)
 
-#### markdown.anchor
+### markdown.anchor
 
 - 类型： `AnchorPluginOptions | false`
 
@@ -287,7 +290,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > 标题锚点](../guide/markdown.md#标题锚点)
 
-#### markdown.assets
+### markdown.assets
 
 - 类型： `AssetsPluginOptions | false`
 
@@ -301,7 +304,7 @@ module.exports = {
 除非你了解它的用途，否则你不应该设置该配置项。
 :::
 
-#### markdown.code
+### markdown.code
 
 - 类型： `CodePluginOptions | false`
 
@@ -314,7 +317,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > 代码块](../guide/markdown.md#代码块)
 
-##### markdown.code.highlightLines
+#### markdown.code.highlightLines
 
 - 类型： `boolean`
 
@@ -327,7 +330,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > 代码块 > 行高亮](../guide/markdown.md#行高亮)
 
-##### markdown.code.lineNumbers
+#### markdown.code.lineNumbers
 
 - 类型： `boolean`
 
@@ -340,7 +343,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > 代码块 > 行号](../guide/markdown.md#行号)
 
-##### markdown.code.preWrapper
+#### markdown.code.preWrapper
 
 - 类型： `boolean`
 
@@ -356,7 +359,7 @@ module.exports = {
 如果你想要在客户端来实现这些功能时，可以禁用该配置项。比如使用 [Prismjs Line Highlight](https://prismjs.com/plugins/line-highlight/) 或者 [Prismjs Line Numbers](https://prismjs.com/plugins/line-numbers/)。
 :::
 
-##### markdown.code.vPre
+#### markdown.code.vPre
 
 - 类型： `boolean`
 
@@ -369,7 +372,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > 代码块 > 添加 v-pre](../guide/markdown.md#添加-v-pre)
 
-#### markdown.customComponent
+### markdown.customComponent
 
 - 类型： `undefined | false`
 
@@ -383,7 +386,7 @@ module.exports = {
 除非你了解它的用途，否则你不应该设置该配置项。
 :::
 
-#### markdown.emoji
+### markdown.emoji
 
 - 类型： `EmojiPluginOptions | false`
 
@@ -396,7 +399,7 @@ module.exports = {
 - 参考：
   - [指南 > Markdown > 语法扩展 > Emoji](../guide/markdown.md#emoji)
 
-#### markdown.extractHeaders
+### markdown.extractHeaders
 
 - 类型： `ExtractHeadersPluginOptions | false`
 
@@ -408,7 +411,7 @@ module.exports = {
 
   设置为 `false` 可以禁用该插件。
 
-#### markdown.hoistTags
+### markdown.hoistTags
 
 - 类型： `HoistTagsPluginOptions | false`
 
@@ -421,24 +424,58 @@ module.exports = {
   设置为 `false` 可以禁用该插件。
 
 - 参考：
-  - [深入 > Markdown 与 Vue SFC](../guide/advanced/markdown.md)
+  - [Cookbook > Markdown 与 Vue SFC](../advanced/cookbook/markdown-and-vue-sfc.md)
 
-#### markdown.links
+### markdown.links
 
-- 类型： `LinksPluginOptions | false`
+- 类型： `LinkPluginOptions | false`
 
 - 详情：
 
   VuePress 内置的 markdown-it 链接插件的配置项。
 
-  它将会把站内链接转换为 `<RouterLink>` ，并且会在站外链接上添加额外的属性。
+  它可以把站内链接转换为 `<RouterLink>` ，并且可以在站外链接上添加额外的属性和图标。
 
   设置为 `false` 可以禁用该插件。
 
 - 参考：
   - [指南 > Markdown > 语法扩展 > 链接](../guide/markdown.md#链接)
 
-#### markdown.toc
+### markdown.links.internalTag
+
+- 类型： `string`
+
+- 默认值： `'RouterLink'`
+
+- 详情：
+
+  内部链接所使用的标签。
+
+  默认情况下，该插件会把内部链接转换为 `<RouterLink>` 。你可以把该选项设置为 `'a'` 来禁用这个功能。
+
+### markdown.links.externalAttrs
+
+- 类型： `Record<string, string>`
+
+- 默认值： `{ target: '_blank', rel: 'noopener noreferrer' }`
+
+- 详情：
+
+  为外部链接添加额外的属性。
+
+### markdown.links.externalIcon
+
+- 类型： `boolean`
+
+- 默认值： `true`
+
+- 详情：
+
+  是否在外部链接的后面添加 <OutboundLink /> 图标。
+
+  你可以通过页面的 [externalIcon](./frontmatter.md#externalicon) frontmatter 来覆盖这个全局配置。
+
+### markdown.toc
 
 - 类型： `TocPluginOptions | false`
 

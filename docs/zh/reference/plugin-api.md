@@ -1,5 +1,7 @@
 # 插件 API
 
+<NpmBadge package="@vuepress/core" />
+
 插件需要在初始化之前使用。基础配置项会在使用插件时立即被处理：
 
 - [name](#name)
@@ -149,7 +151,7 @@ module.exports = {
 
 ### extendsMarkdown
 
-- 类型： `(md: Markdown, app: App) => void`
+- 类型： `(md: Markdown, app: App) => void | Promise<void>`
 
 - 详情：
 
@@ -257,6 +259,7 @@ module.exports = {
 
 - 参考：
   - [客户端 API > defineClientAppEnhance](./client-api.md#defineclientappenhance)
+  - [Cookbook > Client App Enhance 的使用方法](../advanced/cookbook/usage-of-client-app-enhance.md)
 
 ### clientAppRootComponentFiles
 
