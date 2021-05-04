@@ -13,6 +13,7 @@ export const resolvePageComponentInfo = async ({
   app,
   content,
   frontmatter,
+  filePath,
   filePathRelative,
   htmlFilePathRelative,
   key,
@@ -20,10 +21,12 @@ export const resolvePageComponentInfo = async ({
   app: App
   content: string
   frontmatter: PageFrontmatter
+  filePath: string | null
   filePathRelative: string | null
-  htmlFilePathRelative: string | null
+  htmlFilePathRelative: string
   key: string
 }): Promise<{
+  deps: string[]
   headers: MarkdownHeader[]
   links: MarkdownLink[]
   componentFilePath: string
@@ -33,6 +36,7 @@ export const resolvePageComponentInfo = async ({
 }> => {
   const markdownEnv: MarkdownEnv = {
     base: app.options.base,
+    filePath,
     filePathRelative,
     frontmatter,
   }
@@ -40,9 +44,12 @@ export const resolvePageComponentInfo = async ({
   const rendered = app.markdown.render(content, markdownEnv)
 
   /* istanbul ignore next */
-  const { headers = [], links = [], hoistedTags = [] } = markdownEnv
-
-  // TODO: links check
+  const {
+    headers = [],
+    hoistedTags = [],
+    importedFiles = [],
+    links = [],
+  } = markdownEnv
 
   // resolve component file content
   // take the rendered markdown content as <template>
@@ -61,6 +68,7 @@ export const resolvePageComponentInfo = async ({
   const componentFileChunkName = key
 
   return {
+    deps: importedFiles,
     headers,
     links,
     componentFilePath,

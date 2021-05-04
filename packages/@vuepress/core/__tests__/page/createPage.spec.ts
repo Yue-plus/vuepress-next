@@ -21,10 +21,26 @@ describe('core > page > createPage', () => {
     const page = await createPage(app, {
       path: '/',
     })
+
+    // page data
     expect(page.key).toBeTruthy()
     expect(page.path).toBe('/')
+    expect(page.lang).toBe('en-US')
+    expect(page.title).toBe('')
+    expect(page.frontmatter).toEqual({})
+    expect(page.excerpt).toBe('')
+    expect(page.headers).toEqual([])
+
+    // extra data
     expect(page.pathInferred).toBeNull()
     expect(page.pathLocale).toBe('/')
+    expect(page.content).toBe('')
+    expect(page.slug).toBe('')
+    expect(page.date).toBe('0000-00-00')
+    expect(page.deps).toEqual([])
+    expect(page.links).toEqual([])
+
+    // file info
     expect(page.filePath).toBeNull()
     expect(page.filePathRelative).toBeNull()
     expect(page.htmlFilePath).toBe(app.dir.dest(`index.html`))
@@ -38,17 +54,11 @@ describe('core > page > createPage', () => {
     expect(page.componentFileContent).toBe(`<template></template>`)
     expect(page.componentFileChunkName).toBe(page.key)
     expect(page.dataFilePath).toBe(
-      app.dir.temp(`internal/pageData/${page.key}.js`)
+      app.dir.temp(`pages/${page.htmlFilePathRelative}.js`)
     )
-    expect(page.dataFilePathRelative).toBe(`internal/pageData/${page.key}.js`)
+    expect(page.dataFilePathRelative).toBe(
+      `pages/${page.htmlFilePathRelative}.js`
+    )
     expect(page.dataFileChunkName).toBe(page.key)
-    expect(page.title).toBe('')
-    expect(page.content).toBe('')
-    expect(page.frontmatter).toEqual({})
-    expect(page.excerpt).toBe('')
-    expect(page.headers).toEqual([])
-    expect(page.links).toEqual([])
-    expect(page.slug).toBe('')
-    expect(page.date).toBe('0000-00-00')
   })
 })

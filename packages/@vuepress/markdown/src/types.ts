@@ -7,6 +7,7 @@ import type {
   EmojiPluginOptions,
   ExtractHeadersPluginOptions,
   HoistTagsPluginOptions,
+  ImportCodePluginOptions,
   LinksPluginOptions,
   TocPluginOptions,
 } from './plugins'
@@ -21,6 +22,7 @@ export interface MarkdownOptions extends MarkdownIt.Options {
   emoji?: false | EmojiPluginOptions
   extractHeaders?: false | ExtractHeadersPluginOptions
   hoistTags?: false | HoistTagsPluginOptions
+  importCode?: false | ImportCodePluginOptions
   links?: false | LinksPluginOptions
   toc?: false | TocPluginOptions
 }
@@ -57,6 +59,11 @@ export interface MarkdownEnv {
   base?: string
 
   /**
+   * Absolute file path of the markdown file
+   */
+  filePath?: string | null
+
+  /**
    * Relative file path of the markdown file
    */
   filePathRelative?: string | null
@@ -77,6 +84,11 @@ export interface MarkdownEnv {
    * Hoisted tags that extracted by hoistTagsPlugin
    */
   hoistedTags?: string[]
+
+  /**
+   * Imported file that extracted by importCodePlugin
+   */
+  importedFiles?: string[]
 
   /**
    * Links that extracted by linksPlugin

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.12](https://github.com/vuepress/vuepress-next/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2021-04-30)
+
+
+### Bug Fixes
+
+* **core:** avoid uri encoded filename ([4ff7f3b](https://github.com/vuepress/vuepress-next/commit/4ff7f3b287936cce0f9cfe5c8689c2efbb2b52aa))
+* **theme-default:** align the font of line numbers with code blocks (close [#124](https://github.com/vuepress/vuepress-next/issues/124)) ([#125](https://github.com/vuepress/vuepress-next/issues/125)) ([a3ea87d](https://github.com/vuepress/vuepress-next/commit/a3ea87d507a644dc31bf9ffbb5703eb99342cc60))
+
+
+### Features
+
+* **core:** add deps to page object ([83c9aae](https://github.com/vuepress/vuepress-next/commit/83c9aaedcaf531d72d70ad514b9dd8ddf2e508d1))
+* **core:** make filePath available in markdown env ([aa52549](https://github.com/vuepress/vuepress-next/commit/aa52549648b175626d3eafabe8629a78a8caf8e5))
+* **markdown:** support import code blocks (close [#15](https://github.com/vuepress/vuepress-next/issues/15)) ([fe20ccc](https://github.com/vuepress/vuepress-next/commit/fe20cccf3d44565c7fcb890e8ebf2aa4659ab3e1))
+
+
+### Performance Improvements
+
+* **core:** reduce page data and component file size ([4c6eea5](https://github.com/vuepress/vuepress-next/commit/4c6eea5188e804cb3f6c7648d6528d43002618ae))
+* **core:** reduce routes file size ([d926a17](https://github.com/vuepress/vuepress-next/commit/d926a170ee5f384845f5b166029fbc392f51dcde))
+
+
+### BREAKING CHANGES
+
+* **core:** `pagePath` prop of `<Content>` renamed to `pageKey`
+
+
+
+
+
+# [2.0.0-beta.11](https://github.com/vuepress/vuepress-next/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2021-04-28)
+
+
+### Bug Fixes
+
+* **bundler-vite:** make the timestamp of client entry consistent ([4bbff4c](https://github.com/vuepress/vuepress-next/commit/4bbff4c22f67c456a0f4dcfe3ddf5724902a4d2a))
+
+
+### Performance Improvements
+
+* do not register hooks in dev mode for prod-only plugins ([d5af139](https://github.com/vuepress/vuepress-next/commit/d5af1398f059c075783c0c58456cef7b41bcaaf9))
+* specify optimizeDeps for vite dev ([0d77331](https://github.com/vuepress/vuepress-next/commit/0d773312181380114cba16f61b633a5266dd1cf3))
+* **core:** merge page routes to reduce requests in vite dev ([fa2a614](https://github.com/vuepress/vuepress-next/commit/fa2a61413c70afd426f74e57e6e5d2a4900c6568))
+
+
+
+
+
 # [2.0.0-beta.10](https://github.com/vuepress/vuepress-next/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2021-04-27)
 
 

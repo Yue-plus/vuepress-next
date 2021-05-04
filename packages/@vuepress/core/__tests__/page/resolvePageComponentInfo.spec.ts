@@ -12,12 +12,14 @@ describe('core > page > resolvePageComponentInfo', () => {
       app,
       content: 'foobar',
       frontmatter: {},
+      filePath: path.resolve(source, 'foo.md'),
       filePathRelative: 'foo.md',
       htmlFilePathRelative: 'foo.html',
       key: 'key',
     })
 
     expect(resolved).toEqual({
+      deps: [],
       headers: [],
       links: [],
       componentFilePath: app.dir.temp('pages/foo.html.vue'),
@@ -32,12 +34,14 @@ describe('core > page > resolvePageComponentInfo', () => {
       app,
       content: 'foobar',
       frontmatter: {},
+      filePath: null,
       filePathRelative: null,
       htmlFilePathRelative: 'foo.html',
       key: 'key',
     })
 
     expect(resolved).toEqual({
+      deps: [],
       headers: [],
       links: [],
       componentFilePath: app.dir.temp('pages/foo.html.vue'),

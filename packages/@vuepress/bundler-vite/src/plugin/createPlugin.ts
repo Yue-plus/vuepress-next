@@ -86,25 +86,42 @@ export const createPlugin = ({
       },
     }),
 
-    configureServer(server) {
+    async configureServer(server) {
+      // here we need to import vite client script explicitly because we do not
+      // have the `index.html` file as a normal vite app
+      const viteClient = `${app.options.base}@vite/client`
+
+      // resolve the url path of the client entry file
+      // use `removeLeadingSlash` to compat with windows file path
+      const clientEntry = `${app.options.base}@fs/${removeLeadingSlash(
+        app.dir.client('lib/app.js')
+      )}`
+
+      // resolve the module of client entry to get the timestamp
+      const clientEntryModule = await server.moduleGraph.ensureEntryFromUrl(
+        clientEntry
+      )
+
       return () => {
-        // inject client entry-point to dev template
         server.middlewares.use((req, res, next) => {
           if (req.url!.endsWith('.html')) {
             res.statusCode = 200
+
+            // load dev template file
             const template = fs.readFileSync(app.options.templateDev).toString()
 
-            // here we use `lib/index.js` instead of `lib/app.js` as the client entry to
-            // ensure all client files are loaded correctly (might be an issue of vite)
-            const clientEntrySrc = `/@fs/${removeLeadingSlash(
-              app.dir.client('lib/index.js')
-            )}`
+            // inject timestamp to client entry
+            const clientEntrySrc =
+              clientEntryModule.lastHMRTimestamp > 0
+                ? `${clientEntry}?t=${clientEntryModule.lastHMRTimestamp}`
+                : clientEntry
 
+            // inject client entry to dev template
             res.end(
               template.replace(
                 /<\/body>/,
                 `${[
-                  `<script type="module" src="/@vite/client"></script>`,
+                  `<script type="module" src="${viteClient}"></script>`,
                   `<script type="module" src="${clientEntrySrc}"></script>`,
                 ].join('')}</body>`
               )

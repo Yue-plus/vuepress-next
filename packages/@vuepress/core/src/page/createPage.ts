@@ -41,6 +41,7 @@ export const createPage = async (
   const excerpt = resolvePageExcerpt({
     app,
     excerptRaw,
+    filePath,
     filePathRelative,
     frontmatter,
   })
@@ -80,6 +81,7 @@ export const createPage = async (
 
   // resolve page component and extract headers & links
   const {
+    deps,
     headers,
     links,
     componentFilePath,
@@ -89,6 +91,7 @@ export const createPage = async (
   } = await resolvePageComponentInfo({
     app,
     content,
+    filePath,
     filePathRelative,
     frontmatter,
     htmlFilePathRelative,
@@ -99,16 +102,31 @@ export const createPage = async (
     dataFilePath,
     dataFilePathRelative,
     dataFileChunkName,
-  } = resolvePageDataInfo({ app, key })
+  } = resolvePageDataInfo({ app, htmlFilePathRelative, key })
 
   // resolve title from frontmatter and headers
   const title = resolvePageTitle({ content, frontmatter, headers })
 
   return {
+    // page data
     key,
     path,
+    title,
+    lang,
+    frontmatter,
+    excerpt,
+    headers,
+
+    // extra data
     pathInferred,
     pathLocale,
+    content,
+    slug,
+    date,
+    deps,
+    links,
+
+    // file info
     filePath,
     filePathRelative,
     componentFilePath,
@@ -120,14 +138,5 @@ export const createPage = async (
     dataFileChunkName,
     htmlFilePath,
     htmlFilePathRelative,
-    title,
-    content,
-    frontmatter,
-    excerpt,
-    headers,
-    links,
-    slug,
-    date,
-    lang,
   }
 }
