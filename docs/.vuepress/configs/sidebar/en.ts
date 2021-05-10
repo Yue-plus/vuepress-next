@@ -38,6 +38,8 @@ export const en: SidebarConfig = {
         '/advanced/cookbook/README.md',
         '/advanced/cookbook/usage-of-client-app-enhance.md',
         '/advanced/cookbook/adding-extra-pages.md',
+        '/advanced/cookbook/extending-a-theme.md',
+        '/advanced/cookbook/passing-data-to-client-code.md',
         '/advanced/cookbook/markdown-and-vue-sfc.md',
       ],
     },
